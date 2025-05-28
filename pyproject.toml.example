@@ -1,0 +1,31 @@
+[tool.pyright]
+venv=".venv"
+venvPath="."
+
+typeCheckingMode="basic"
+diagnosticSeverityOverrides=false
+reportAttributeAccessIssue=true
+
+[tool.rope]
+ignored_resources = [
+        "*.pyc",
+        "*~",
+        ".ropeproject",
+        ".hg",
+        ".svn",
+        "_svn",
+        ".git",
+        ".tox",
+        ".venv",
+        "venv",
+        "lib"
+    ]
+python_path=[
+"./lib/python3.12/site-packages",
+]
+ignore_bad_imports=true
+prefer_module_from_imports=true
+
+[tool.ruff.lint]
+extend-select = ["W","COM","ICN"]
+ignore = ["E501",F821","F401","COM812", "W293"] 

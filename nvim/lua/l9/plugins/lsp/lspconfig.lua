@@ -310,7 +310,7 @@ return {
 					},
 					-- make the language server recognize "vim" global
 					diagnostics = {
-						globals = { "vim" },
+						globals = { "vim", "require" },
 						disable = { "missing-fields" },
 					},
 					workspace = {

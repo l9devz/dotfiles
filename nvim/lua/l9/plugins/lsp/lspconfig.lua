@@ -289,21 +289,21 @@ return {
 			},
 		})
 
-		-- lspconfig["pyright"].setup({
-		-- 	capabilities = capabilities,
-		-- 	on_attach = on_attach,
-		-- 	settings = {
-		-- 		pyright = {
-		-- 			disableOrganizeImports = true,
-		-- 			disableTaggedHints = true,
-		-- 		},
-		-- 		python = {
-		-- 			analystic = {
-		-- 				ignore = { "*" },
-		-- 			},
-		-- 		},
-		-- 	},
-		-- })
+		lspconfig["pyright"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = {
+				pyright = {
+					disableOrganizeImports = true,
+					disableTaggedHints = true,
+				},
+				python = {
+					analystic = {
+						ignore = { "*" },
+					},
+				},
+			},
+		})
 
 		-- configure prisma orm server
 		lspconfig["prismals"].setup({

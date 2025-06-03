@@ -102,6 +102,32 @@ return {
 			vim.lsp.buf_request_sync(0, "workspace/executeCommand", params)
 		end
 
+		-- configure lua server (with special settings)
+		lspconfig["lua_ls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = { -- custom settings for lua
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					-- make the language server recognize "vim" global
+					diagnostics = {
+						globals = { "vim", "require" },
+						disable = { "missing-fields" },
+					},
+					workspace = {
+						checkThirdParty = false,
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
+					},
+				},
+			},
+		})
+
 		lspconfig["dartls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
@@ -297,32 +323,6 @@ return {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-		})
-
-		-- configure lua server (with special settings)
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					runtime = {
-						version = "LuaJIT",
-					},
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim", "require" },
-						disable = { "missing-fields" },
-					},
-					workspace = {
-						checkThirdParty = false,
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
 		})
 	end,
 }

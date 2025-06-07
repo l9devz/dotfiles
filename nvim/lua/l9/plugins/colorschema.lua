@@ -1,23 +1,18 @@
 return {
-	"folke/tokyonight.nvim",
+	"catppuccin/nvim",
 
 	priority = 1000, -- make sure to load this before all the other start plugins
-	opts = {
-		transparent = true,
-		styles = {
-			sidebars = "transparent",
-			floats = "transparent",
-		},
-	},
 	config = function()
-		require("tokyonight").setup({
-			transparent = true,
-			styles = {
-				sidebars = "transparent",
-				floats = "transparent",
+		require("catppuccin").setup({
+			flavour = "mocha",
+			transparent_background = false,
+			integrations = {
+				nvimtree = true,
+				treesitter = true,
+				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 			},
 		})
 		-- load the colorscheme here
-		vim.cmd([[colorscheme tokyonight-night]])
+		vim.cmd([[colorscheme catppuccin]])
 	end,
 }

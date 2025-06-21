@@ -36,12 +36,12 @@ return {
 				"svelte",
 				"lua_ls",
 				"gopls",
-				"lua-language-server",
 				"graphql",
 				"emmet_ls",
 				"prismals",
 				"pyright",
 				"ruff",
+				"ts_ls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed

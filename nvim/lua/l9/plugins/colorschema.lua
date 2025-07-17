@@ -1,10 +1,9 @@
 return {
-	"catppuccin/nvim",
+	"folke/tokyonight.nvim",
 
 	priority = 1000, -- make sure to load this before all the other start plugins
 	config = function()
-		require("catppuccin").setup({
-			flavour = "mocha",
+		require("tokyonight").setup({
 			transparent_background = false,
 			integrations = {
 				nvimtree = true,
@@ -13,6 +12,6 @@ return {
 			},
 		})
 		-- load the colorscheme here
-		vim.cmd([[colorscheme catppuccin]])
+		vim.cmd([[colorscheme tokyonight-storm]])
 	end,
 }

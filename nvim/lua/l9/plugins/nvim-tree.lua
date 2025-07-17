@@ -54,7 +54,7 @@ return {
 				},
 			},
 			filters = {
-				custom = { ".DS_Store" },
+				custom = { ".DS_Store", ".git$", "__pycache__", ".idea", ".vscode", ".ropeproject" },
 			},
 			git = {
 				ignore = false,

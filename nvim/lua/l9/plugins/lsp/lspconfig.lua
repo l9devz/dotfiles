@@ -273,7 +273,7 @@ return {
 					},
 					format = {
 						args = {
-							"--line-length=88",
+							"--line-length=100",
 						},
 					},
 					codeAction = {

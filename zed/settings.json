@@ -1,0 +1,84 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "agent": {
+    "enabled": false
+  },
+  "base_keymap": "VSCode",
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 14,
+  "buffer_font_fallbacks": ["SauceCodePro Nerd Font Mono"],
+  "theme": {
+    "mode": "system",
+    "light": "One Dark",
+    "dark": "One Dark"
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/__pycache__",
+    "**/.ropeproject"
+  ],
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          // Ruff server settings go here
+          // These settings will override any in ruff.toml or pyproject.toml if configurationPreference is "editorFirst"
+          "lineLength": 100, // Example: Set your preferred line length
+          "lint": {
+            "extendSelect": ["I"] // Example: Enable import sorting
+          },
+          // You can also specify the path to your ruff.toml if it's not in the project root:
+          // "configuration": "~/path/to/your/ruff.toml"
+          "configurationPreference": "filesystemFirst" // Prioritize ruff.toml/pyproject.toml
+        }
+      }
+    },
+    "pyright": {
+      "settings": {
+        "python.analysis": {
+          "diagnosticMode": "workspace",
+          "typeCheckingMode": "standard"
+        }
+      }
+    }
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "external": {
+            "command": "/opt/homebrew/bin/black",
+            "arguments": ["--stdin-filename", "{buffer_path}", "-"]
+          }
+        }
+      ]
+    }
+  }
+}

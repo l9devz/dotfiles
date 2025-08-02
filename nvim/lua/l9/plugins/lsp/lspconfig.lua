@@ -17,6 +17,29 @@ return {
 			return vim.fs.dirname(vim.fs.find(matches, { upward = true })[1])
 		end
 
+		local show_lsp_references = function()
+			local bufnr = vim.api.nvim_get_current_buf()
+			local clients = vim.lsp.get_clients({ bufnr = bufnr })
+			if #clients == 0 then
+				vim.notify("No LSP client attached", vim.log.levels.WARN)
+				return
+			end
+			local client = clients[1]
+			local offset_encoding = client.offset_encoding or "utf-16"
+			local win = vim.api.nvim_get_current_win()
+
+			-- Fix: Pass offset_encoding as the third parameter
+			local pos_params = vim.lsp.util.make_position_params(win, offset_encoding)
+
+			-- Build a proper ReferenceParams table
+			local ref_params = {
+				textDocument = pos_params.textDocument,
+				position = pos_params.position,
+				context = { includeDeclaration = false },
+			}
+			require("telescope.builtin").lsp_references({ params = ref_params, desc = "Show LSP References" })
+		end
+
 		local keymap = vim.keymap -- for conciseness
 
 		local opts = { noremap = true, silent = true }
@@ -30,7 +53,8 @@ return {
 
 			-- set keybinds
 			opts.desc = "Show LSP references"
-			keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+			-- keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+			keymap.set("n", "gR", show_lsp_references, { desc = "Show LSP References" })
 
 			opts.desc = "Go to declaration"
 			keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
